@@ -416,6 +416,91 @@
       .details-copy h2 { font-size:30px; }
     }
 
+
+    .lifestyle-feature {
+      padding: 35px 7% 75px;
+      background: #fffdf9;
+    }
+    .lifestyle-banner {
+      max-width: 1120px;
+      margin: 0 auto;
+      min-height: 390px;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      background: #ead9ce;
+    }
+    .lifestyle-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .lifestyle-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(39,22,17,.60), rgba(39,22,17,.05) 78%);
+    }
+    .lifestyle-banner-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 510px;
+      padding: 42px;
+      color: white;
+      text-align: left;
+    }
+    .lifestyle-banner-copy h2 {
+      font: 42px Georgia, serif;
+      line-height: 1.08;
+      margin: 12px 0;
+    }
+    .lifestyle-banner-copy p {
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 420px;
+    }
+    .ritual-section {
+      padding: 75px 7%;
+      background: #f8e5d9;
+      text-align: center;
+    }
+    .ritual-grid {
+      max-width: 1100px;
+      margin: 36px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      text-align: left;
+    }
+    .ritual-card {
+      background: #fffdf9;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .ritual-card img {
+      display: block;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+    .ritual-card-copy { padding: 22px 24px 26px; }
+    .ritual-card-copy h3 { font: 27px Georgia, serif; margin: 0 0 9px; }
+    .ritual-card-copy p { font-size: 13px; line-height: 1.8; margin: 0; }
+    @media (max-width:700px) {
+      .lifestyle-feature { padding: 20px 5% 55px; }
+      .lifestyle-banner { min-height: 430px; }
+      .lifestyle-banner-copy { padding: 25px; }
+      .lifestyle-banner-copy h2 { font-size: 34px; }
+      .ritual-section { padding: 55px 6%; }
+      .ritual-grid { grid-template-columns: 1fr; }
+      .ritual-card img { height: 270px; }
+    }
+
   </style>
 </head>
 
@@ -453,6 +538,18 @@
           A little everyday luxury, made to be enjoyed.
         </p>
         <a class="button" href="#collection">SHOP THE COLLECTION</a>
+      </div>
+    </section>
+
+    <section class="lifestyle-feature" aria-label="The Butter Bar lifestyle campaign">
+      <div class="lifestyle-banner">
+        <img src="Radiant Butter Bar Beauty Campaign (1).png" alt="The Butter Bar beauty campaign">
+        <div class="lifestyle-banner-copy">
+          <div class="eyebrow">A little everyday indulgence</div>
+          <h2>Make room for your butter moment.</h2>
+          <p>Soft skin, beautiful textures and fragrance stories worth slowing down for. Bring a little joy to your everyday body-care ritual.</p>
+          <a class="button" href="#collection">EXPLORE THE COLLECTION</a>
+        </div>
       </div>
     </section>
 
@@ -505,6 +602,27 @@
   </div>
 </article>
 
+      </div>
+    </section>
+
+    <section class="ritual-section" id="ritual">
+      <h2 class="section-heading">The Butter Ritual</h2>
+      <p class="section-intro">A little pause in your day. A soft, whipped texture. A fragrance you look forward to wearing.</p>
+      <div class="ritual-grid">
+        <article class="ritual-card">
+          <img src="Coconut Cream Body Butter Ritual.png" alt="Coconut Cream body butter lifestyle ritual">
+          <div class="ritual-card-copy">
+            <h3>Your moment of softness</h3>
+            <p>Take a little time for yourself and enjoy the comforting, creamy character of Coconut Cream.</p>
+          </div>
+        </article>
+        <article class="ritual-card">
+          <img src="Strawberry Cheesecake Body Butter Glow2.png" alt="Strawberry Cheesecake body butter lifestyle image">
+          <div class="ritual-card-copy">
+            <h3>Indulgence, every day</h3>
+            <p>Let your daily body-care routine feel a little more joyful with a fragrance that makes you smile.</p>
+          </div>
+        </article>
       </div>
     </section>
 
