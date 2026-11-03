@@ -676,6 +676,73 @@
       .ritual-card img { height: 260px; }
     }
 
+  
+    .faq-section {
+      background: #fffdf9;
+    }
+    .faq-wrap {
+      width: min(820px, 100%);
+      margin: 30px auto 0;
+      text-align: left;
+    }
+    .faq-item {
+      border-bottom: 1px solid #eadbd1;
+      padding: 19px 2px;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      color: var(--berry);
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      color: #70594f;
+      line-height: 1.8;
+      margin: 12px 34px 0 0;
+      font-size: 14px;
+    }
+    .faq-note {
+      color: #806a60;
+      font-size: 12px;
+      line-height: 1.7;
+      margin-top: 22px;
+      text-align: center;
+    }
+    footer a { color: var(--berry); text-decoration: none; }
+    @media (max-width: 700px) {
+      .faq-item { padding: 16px 2px; }
+      .faq-item summary { font-size: 14px; }
+      .faq-item p { font-size: 13px; }
+    }
+
+  
+    .launch-notice {
+      width: min(900px, calc(100% - 36px));
+      margin: 22px auto;
+      padding: 13px 18px;
+      border: 1px solid #eadbd1;
+      border-radius: 14px;
+      background: #fffdf9;
+      color: #70594f;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
   </style>
 </head>
 
@@ -697,6 +764,7 @@
       <a href="#collection">The Collection</a>
       <a href="#experience">The Experience</a>
       <a href="#story">Our Story</a>
+      <a href="#faq">FAQs</a>
       <button class="cart-nav" type="button" onclick="openCart()">Your Cart <span id="cart-count">0</span></button>
     </nav>
   </header>
@@ -712,9 +780,11 @@
           body butter inspired by the fragrances you love.
           A little everyday luxury, made to be enjoyed.
         </p>
-        <a class="button" href="#collection">SHOP THE COLLECTION</a>
+        <a class="button" href="#collection">EXPLORE THE COLLECTION</a>
       </div>
     </section>
+
+    <div class="launch-notice">Explore our three signature fragrance stories and message us on WhatsApp for collection enquiries and launch updates. The displayed GH₵50 is planned launch pricing.</div>
 
     <section class="lifestyle-feature" aria-label="The Butter Bar campaign slideshow">
       <div class="lifestyle-banner campaign-slider" id="campaign-slider">
@@ -732,7 +802,7 @@
           <div class="trio-slide-caption">
             <span>THREE SIGNATURE SCENT STORIES</span>
             <strong>Find your favourite butter.</strong>
-            <a href="#collection">SHOP THE COLLECTION</a>
+            <a href="#collection">EXPLORE THE COLLECTION</a>
           </div>
         </div>
         <div class="campaign-controls" aria-label="Slideshow controls">
@@ -764,7 +834,7 @@
           <div class="price">150g · GH₵50</div>
           <div class="product-actions">
             <button class="details-link" type="button" onclick="openProductDetails('Strawberry Cheesecake')">VIEW DETAILS & PHOTOS</button>
-            <button class="add-to-cart" type="button" onclick="addToCart('Strawberry Cheesecake')">ADD TO CART</button>
+            <button class="add-to-cart" type="button" onclick="addToCart('Strawberry Cheesecake')">ADD TO YOUR SELECTION</button>
           </div>
         </article>
 
@@ -778,7 +848,7 @@
           <div class="price">150g · GH₵50</div>
           <div class="product-actions">
             <button class="details-link" type="button" onclick="openProductDetails('Mango Nectar')">VIEW DETAILS & PHOTOS</button>
-            <button class="add-to-cart" type="button" onclick="addToCart('Mango Nectar')">ADD TO CART</button>
+            <button class="add-to-cart" type="button" onclick="addToCart('Mango Nectar')">ADD TO YOUR SELECTION</button>
           </div>
         </article>
 
@@ -791,7 +861,7 @@
   <div class="price">150g · GH₵50</div>
   <div class="product-actions">
     <button class="details-link" type="button" onclick="openProductDetails('Coconut Cream')">VIEW DETAILS & PHOTOS</button>
-    <button class="add-to-cart" type="button" onclick="addToCart('Coconut Cream')">ADD TO CART</button>
+    <button class="add-to-cart" type="button" onclick="addToCart('Coconut Cream')">ADD TO YOUR SELECTION</button>
   </div>
 </article>
 
@@ -856,12 +926,57 @@
       </p>
     </section>
 
+
+    <section class="section faq-section" id="faq">
+      <h2 class="section-heading">A Few Little Questions</h2>
+      <p class="section-intro">Everything you need to know before your butter moment.</p>
+      <div class="faq-wrap">
+        <details class="faq-item">
+          <summary>What is The Butter Bar?</summary>
+          <p>The Butter Bar is a fragrance-led whipped body butter collection by Siya Naturals, created to make everyday body care feel a little more indulgent.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What fragrances are available?</summary>
+          <p>Our launch collection features Strawberry Cheesecake, Mango Nectar and Coconut Cream.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What size are the body butters and how much do they cost?</summary>
+          <p>Each jar contains 150g and costs GH₵50.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I place an order?</summary>
+          <p>Explore the collection and send us a WhatsApp enquiry about availability and launch updates.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which payment method do you accept?</summary>
+          <p>Payment arrangements will be shared when the collection is officially available for purchase. We do not request payment through this website.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does delivery work?</summary>
+          <p>When the collection becomes available for purchase, delivery fees will depend on your location. You may choose a rider arranged by Siya Naturals or arrange your own rider.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When will my order be ready?</summary>
+          <p>Our planned order-preparation target is within 24 hours after an order is confirmed for sale. Delivery transit time will depend on the delivery arrangement.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I return an order if I change my mind?</summary>
+          <p>We do not accept change-of-mind returns. If your order arrives damaged, leaking, defective or incorrect, please contact us within 24 hours of receipt so we can review the issue and arrange an appropriate remedy.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How can I contact The Butter Bar?</summary>
+          <p>Send us a WhatsApp enquiry or email <a href="mailto:siyanaturalsgh@gmail.com">siyanaturalsgh@gmail.com</a>.</p>
+        </details>
+      </div>
+      <p class="faq-note">Need a little more help? Send us a message and we'll be happy to assist.</p>
+    </section>
+
     <section class="order" id="order">
-      <h2 class="section-heading">Your Butter Moment Awaits</h2>
+      <h2 class="section-heading">Your Butter Moment Starts Here</h2>
       <p class="section-intro">
-        Add your favourites to your cart, then send your order to us on WhatsApp.
+        Add fragrances to your selection and send us an enquiry on WhatsApp.
       </p>
-      <button class="button" type="button" onclick="openCart()" style="border:0;cursor:pointer;">VIEW YOUR CART & CHECK OUT</button>
+      <button class="button" type="button" onclick="openCart()" style="border:0;cursor:pointer;">VIEW YOUR SELECTION & ENQUIRE</button>
     </section>
 
   </main>
@@ -882,6 +997,7 @@
           <h2 id="details-title"></h2>
           <p id="details-description"></p>
           <div class="details-price">150g · GH₵50</div>
+          <p class="faq-note">Planned launch price. Send an enquiry for availability and launch updates.</p>
           <p><strong>A little butter. A lot of indulgence.</strong><br>
           A whipped body butter made for your everyday body-care ritual.</p>
           <div class="details-quantity">
@@ -890,7 +1006,7 @@
             <span id="details-quantity">1</span>
             <button type="button" aria-label="Increase quantity" onclick="changeDetailQuantity(1)">+</button>
           </div>
-          <button class="add-to-cart" type="button" onclick="addDetailProductToCart()">ADD TO CART</button>
+          <button class="add-to-cart" type="button" onclick="addDetailProductToCart()">ADD TO YOUR SELECTION</button>
         </div>
       </div>
     </div>
@@ -898,16 +1014,16 @@
 
   <div class="cart-panel" id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" onclick="if(event.target===this) closeCart()">
     <div class="cart-box">
-      <div class="cart-top"><h2 id="cart-title">Your Butter Bag</h2><button class="cart-close" type="button" aria-label="Close cart" onclick="closeCart()">&times;</button></div>
-      <div id="cart-items"><p class="empty-cart">Your cart is waiting for a little butter.</p></div>
+      <div class="cart-top"><h2 id="cart-title">Your Selection</h2><button class="cart-close" type="button" aria-label="Close cart" onclick="closeCart()">&times;</button></div>
+      <div id="cart-items"><p class="empty-cart">Your selection is waiting for a little butter.</p></div>
       <div class="cart-total"><span>Subtotal</span><span id="cart-subtotal">GH₵0</span></div>
-      <p class="cart-note">Delivery is calculated separately and confirmed with you on WhatsApp.</p>
+      <p class="cart-note">This is an enquiry selection, not a confirmed order. Price shown is planned launch pricing. No payment is collected through this website.</p>
       <form id="checkout-form" class="checkout-fields" onsubmit="checkoutWhatsApp(event)">
         <input id="customer-name" type="text" placeholder="Your name" autocomplete="name" required>
         <input id="customer-phone" type="tel" placeholder="Your phone number" autocomplete="tel" required>
-        <textarea id="customer-location" placeholder="Delivery location / address" required></textarea>
+        <textarea id="customer-location" placeholder="Your area / location (optional)" required></textarea>
         <textarea id="customer-note" placeholder="Any additional note? (optional)"></textarea>
-        <button class="cart-checkout" type="submit">CONTINUE TO WHATSAPP CHECKOUT</button>
+        <button class="cart-checkout" type="submit">SEND ENQUIRY ON WHATSAPP</button>
       </form>
     </div>
   </div>
@@ -931,7 +1047,7 @@
       const items = document.getElementById('cart-items');
       const names = PRODUCT_NAMES.filter(name => cart[name] > 0);
       document.getElementById('cart-count').textContent = cartCount();
-      if (!names.length) { items.innerHTML = '<p class="empty-cart">Your cart is empty. Add a fragrance you love.</p>'; }
+      if (!names.length) { items.innerHTML = '<p class="empty-cart">Your selection is empty. Add a fragrance you love.</p>'; }
       else { items.innerHTML = names.map(name => `<div class="cart-row"><div><strong>${name}</strong><small>150g · ${money(PRODUCT_PRICE)} each</small><div class="quantity-controls"><button type="button" aria-label="Decrease ${name}" onclick="changeQuantity('${name}',-1)">−</button><span>${cart[name]}</span><button type="button" aria-label="Increase ${name}" onclick="changeQuantity('${name}',1)">+</button><button class="remove-item" type="button" onclick="removeFromCart('${name}')">Remove</button></div></div><strong>${money(cart[name] * PRODUCT_PRICE)}</strong></div>`).join(''); }
       const total = names.reduce((sum, name) => sum + cart[name] * PRODUCT_PRICE, 0);
       document.getElementById('cart-subtotal').textContent = money(total);
@@ -942,18 +1058,18 @@
     function checkoutWhatsApp(event) {
       event.preventDefault();
       const names = PRODUCT_NAMES.filter(name => cart[name] > 0);
-      if (!names.length) { alert('Please add at least one product to your cart.'); return; }
+      if (!names.length) { alert('Please add at least one fragrance to your selection.'); return; }
       if (!/^233\d{9}$/.test(WHATSAPP_NUMBER)) { alert('The WhatsApp Business number has not been added to the website yet. Please contact the website owner to set it up.'); return; }
       const total = names.reduce((sum, name) => sum + cart[name] * PRODUCT_PRICE, 0);
       const lines = names.map(name => `• ${name} (150g) x ${cart[name]} = ${money(cart[name] * PRODUCT_PRICE)}`);
       const message = [
-        'Hello The Butter Bar! I would like to place an order:', '', ...lines, '',
+        'Hello The Butter Bar! I am interested in these fragrances and would like to enquire:', '', ...lines, '',
         `Subtotal: ${money(total)}`, 'Delivery: Please confirm delivery fee.', '',
         `Name: ${document.getElementById('customer-name').value.trim()}`,
         `Phone: ${document.getElementById('customer-phone').value.trim()}`,
         `Delivery location: ${document.getElementById('customer-location').value.trim()}`,
         `Note: ${document.getElementById('customer-note').value.trim() || 'None'}`, '',
-        'Please confirm availability and payment details. Thank you!'
+        'Please let me know about availability and launch updates. Thank you!'
       ].join('\n');
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     }
@@ -1069,7 +1185,8 @@
   <footer>
     <strong>The Butter Bar by Siya Naturals</strong><br>
     A Little Butter. A Lot of Indulgence.<br>
-    Ghana
+    Ghana<br>
+    <a href="mailto:siyanaturalsgh@gmail.com">siyanaturalsgh@gmail.com</a>
   </footer>
 
 </body>
