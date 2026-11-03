@@ -321,6 +321,44 @@
       line-height: 2;
     }
 
+    .add-to-cart {
+      border: 0; cursor: pointer; background: var(--brown); color: #fff;
+      padding: 12px 20px; border-radius: 28px; font-size: 12px; font-weight: 700;
+      letter-spacing: .4px; margin-top: 8px;
+    }
+    .add-to-cart:hover, .cart-checkout:hover { background: var(--berry); }
+    .cart-nav { border: 0; cursor: pointer; background: var(--brown); color: white;
+      padding: 12px 18px; border-radius: 30px; font-size: 13px; font-weight: 700; }
+    #cart-count { display: inline-grid; place-items: center; min-width: 21px; height: 21px;
+      margin-left: 5px; border-radius: 50%; background: var(--pink); color: var(--brown); }
+    .cart-panel { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(30,16,12,.55);
+      padding: 18px; align-items: center; justify-content: center; }
+    .cart-panel.open { display: flex; }
+    .cart-box { width: min(100%, 560px); max-height: 90vh; overflow-y: auto; background: #fffdf9;
+      border-radius: 20px; padding: 25px; box-shadow: 0 20px 60px rgba(0,0,0,.2); text-align: left; }
+    .cart-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .cart-top h2 { font: 30px Georgia,serif; margin: 0 0 18px; }
+    .cart-close { border:0; background:transparent; font-size:28px; cursor:pointer; color:var(--brown); }
+    .cart-row { display:grid; grid-template-columns:1fr auto; gap:12px; padding:14px 0; border-bottom:1px solid #eadfd5; }
+    .cart-row strong { display:block; margin-bottom:5px; }
+    .cart-row small { color:#705b50; }
+    .quantity-controls { display:flex; align-items:center; gap:9px; margin-top:9px; }
+    .quantity-controls button { width:29px; height:29px; border:1px solid #ddcfc4; border-radius:50%; background:white; cursor:pointer; }
+    .remove-item { border:0; background:none; color:var(--berry); cursor:pointer; font-size:12px; margin-left:5px; }
+    .cart-total { display:flex; justify-content:space-between; font-weight:700; font-size:18px; padding:18px 0; }
+    .checkout-fields { display:grid; gap:10px; margin-top:8px; }
+    .checkout-fields input, .checkout-fields textarea { width:100%; padding:13px; border:1px solid #dfd2c7; border-radius:10px; font:14px Arial,sans-serif; background:white; }
+    .checkout-fields textarea { min-height:75px; resize:vertical; }
+    .cart-checkout { width:100%; border:0; background:var(--brown); color:white; border-radius:28px; padding:15px;
+      font-weight:700; cursor:pointer; margin-top:15px; }
+    .cart-note { font-size:12px; line-height:1.6; color:#725e53; }
+    .empty-cart { padding:25px 0; text-align:center; color:#725e53; }
+    @media (max-width: 700px) {
+      .cart-box { padding:20px; }
+      .cart-top h2 { font-size:26px; }
+      .cart-nav { padding:10px 14px; }
+    }
+
     @media (max-width: 700px) {
       header {
         flex-direction: column;
@@ -367,7 +405,7 @@
       <a href="#collection">The Collection</a>
       <a href="#experience">The Experience</a>
       <a href="#story">Our Story</a>
-      <a class="nav-order" href="#order">Order Now</a>
+      <button class="cart-nav" type="button" onclick="openCart()">Your Cart <span id="cart-count">0</span></button>
     </nav>
   </header>
 
@@ -402,7 +440,7 @@
           <h3>Strawberry Cheesecake</h3>
           <p>Sweet strawberry, creamy indulgence and a deliciously dreamy finish.</p>
           <div class="price">150g · GH₵50</div>
-          <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+          <button class="add-to-cart" type="button" onclick="addToCart('Strawberry Cheesecake')">ADD TO CART</button>
         </article>
 
         <article class="product">
@@ -413,7 +451,7 @@
           <h3>Mango Nectar</h3>
           <p>A juicy tropical fragrance with a sunshine-filled personality.</p>
           <div class="price">150g · GH₵50</div>
-          <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+          <button class="add-to-cart" type="button" onclick="addToCart('Mango Nectar')">ADD TO CART</button>
         </article>
 
         <article class="product">
@@ -423,7 +461,7 @@
   <h3>Coconut Cream</h3>
   <p>Soft, creamy coconut with a warm and comforting scent.</p>
   <div class="price">150g · GH₵50</div>
-  <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+  <button class="add-to-cart" type="button" onclick="addToCart('Coconut Cream')">ADD TO CART</button>
 </article>
 
       </div>
@@ -469,14 +507,77 @@
     <section class="order" id="order">
       <h2 class="section-heading">Your Butter Moment Awaits</h2>
       <p class="section-intro">
-        Find your favourite fragrance and get in touch to place an order.
+        Add your favourites to your cart, then send your order to us on WhatsApp.
       </p>
-      <a class="button" href="https://wa.me/233XXXXXXXXX">
-        ORDER VIA WHATSAPP
-      </a>
+      <button class="button" type="button" onclick="openCart()" style="border:0;cursor:pointer;">VIEW YOUR CART & CHECK OUT</button>
     </section>
 
   </main>
+
+
+  <div class="cart-panel" id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" onclick="if(event.target===this) closeCart()">
+    <div class="cart-box">
+      <div class="cart-top"><h2 id="cart-title">Your Butter Bag</h2><button class="cart-close" type="button" aria-label="Close cart" onclick="closeCart()">&times;</button></div>
+      <div id="cart-items"><p class="empty-cart">Your cart is waiting for a little butter.</p></div>
+      <div class="cart-total"><span>Subtotal</span><span id="cart-subtotal">GH₵0</span></div>
+      <p class="cart-note">Delivery is calculated separately and confirmed with you on WhatsApp.</p>
+      <form id="checkout-form" class="checkout-fields" onsubmit="checkoutWhatsApp(event)">
+        <input id="customer-name" type="text" placeholder="Your name" autocomplete="name" required>
+        <input id="customer-phone" type="tel" placeholder="Your phone number" autocomplete="tel" required>
+        <textarea id="customer-location" placeholder="Delivery location / address" required></textarea>
+        <textarea id="customer-note" placeholder="Any additional note? (optional)"></textarea>
+        <button class="cart-checkout" type="submit">CONTINUE TO WHATSAPP CHECKOUT</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Replace this placeholder with your WhatsApp Business number in international format, digits only.
+    // Example Ghana format: 233241234567 (do not include +, spaces or the leading 0).
+    const WHATSAPP_NUMBER = '233530474689';
+    const PRODUCT_PRICE = 50;
+    const PRODUCT_NAMES = ['Strawberry Cheesecake', 'Mango Nectar', 'Coconut Cream'];
+    let cart = {};
+    try { cart = JSON.parse(localStorage.getItem('butterBarCart') || '{}') || {}; } catch (e) { cart = {}; }
+
+    function saveCart() { localStorage.setItem('butterBarCart', JSON.stringify(cart)); renderCart(); }
+    function addToCart(name) { cart[name] = (cart[name] || 0) + 1; saveCart(); openCart(); }
+    function changeQuantity(name, delta) { cart[name] = (cart[name] || 0) + delta; if (cart[name] <= 0) delete cart[name]; saveCart(); }
+    function removeFromCart(name) { delete cart[name]; saveCart(); }
+    function cartCount() { return Object.values(cart).reduce((sum, qty) => sum + qty, 0); }
+    function money(amount) { return 'GH₵' + amount.toFixed(2).replace(/\.00$/, ''); }
+    function renderCart() {
+      const items = document.getElementById('cart-items');
+      const names = PRODUCT_NAMES.filter(name => cart[name] > 0);
+      document.getElementById('cart-count').textContent = cartCount();
+      if (!names.length) { items.innerHTML = '<p class="empty-cart">Your cart is empty. Add a fragrance you love.</p>'; }
+      else { items.innerHTML = names.map(name => `<div class="cart-row"><div><strong>${name}</strong><small>150g · ${money(PRODUCT_PRICE)} each</small><div class="quantity-controls"><button type="button" aria-label="Decrease ${name}" onclick="changeQuantity('${name}',-1)">−</button><span>${cart[name]}</span><button type="button" aria-label="Increase ${name}" onclick="changeQuantity('${name}',1)">+</button><button class="remove-item" type="button" onclick="removeFromCart('${name}')">Remove</button></div></div><strong>${money(cart[name] * PRODUCT_PRICE)}</strong></div>`).join(''); }
+      const total = names.reduce((sum, name) => sum + cart[name] * PRODUCT_PRICE, 0);
+      document.getElementById('cart-subtotal').textContent = money(total);
+      document.getElementById('checkout-form').style.display = names.length ? 'grid' : 'none';
+    }
+    function openCart() { renderCart(); document.getElementById('cart-panel').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { document.getElementById('cart-panel').classList.remove('open'); document.body.style.overflow = ''; }
+    function checkoutWhatsApp(event) {
+      event.preventDefault();
+      const names = PRODUCT_NAMES.filter(name => cart[name] > 0);
+      if (!names.length) { alert('Please add at least one product to your cart.'); return; }
+      if (!/^233\d{9}$/.test(WHATSAPP_NUMBER)) { alert('The WhatsApp Business number has not been added to the website yet. Please contact the website owner to set it up.'); return; }
+      const total = names.reduce((sum, name) => sum + cart[name] * PRODUCT_PRICE, 0);
+      const lines = names.map(name => `• ${name} (150g) x ${cart[name]} = ${money(cart[name] * PRODUCT_PRICE)}`);
+      const message = [
+        'Hello The Butter Bar! I would like to place an order:', '', ...lines, '',
+        `Subtotal: ${money(total)}`, 'Delivery: Please confirm delivery fee.', '',
+        `Name: ${document.getElementById('customer-name').value.trim()}`,
+        `Phone: ${document.getElementById('customer-phone').value.trim()}`,
+        `Delivery location: ${document.getElementById('customer-location').value.trim()}`,
+        `Note: ${document.getElementById('customer-note').value.trim() || 'None'}`, '',
+        'Please confirm availability and payment details. Thank you!'
+      ].join('\n');
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    }
+    renderCart();
+  </script>
 
   <footer>
     <strong>The Butter Bar by Siya Naturals</strong><br>
