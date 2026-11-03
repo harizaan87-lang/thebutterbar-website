@@ -384,6 +384,38 @@
 
       .section { padding: 55px 6%; }
     }
+
+    .details-panel { display:none; position:fixed; inset:0; z-index:1100; background:rgba(30,16,12,.62);
+      padding:18px; align-items:center; justify-content:center; }
+    .details-panel.open { display:flex; }
+    .details-box { width:min(100%, 900px); max-height:92vh; overflow-y:auto; background:#fffdf9;
+      border-radius:22px; padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.25); position:relative; }
+    .details-close { position:absolute; right:18px; top:12px; border:0; background:transparent;
+      color:var(--brown); font-size:30px; cursor:pointer; z-index:2; }
+    .details-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:28px; align-items:center; }
+    .gallery-main { height:390px; border-radius:16px; background:#f8e5d9; display:grid; place-items:center; overflow:hidden; }
+    .gallery-main img { width:100%; height:100%; object-fit:contain; display:block; }
+    .gallery-thumbs { display:flex; gap:10px; overflow-x:auto; padding:12px 2px 3px; }
+    .gallery-thumbs button { flex:0 0 76px; height:76px; border:2px solid transparent; border-radius:10px;
+      background:#f8e5d9; padding:3px; overflow:hidden; cursor:pointer; }
+    .gallery-thumbs button.active { border-color:var(--berry); }
+    .gallery-thumbs img { width:100%; height:100%; object-fit:cover; border-radius:7px; }
+    .details-copy h2 { font:36px Georgia,serif; margin:8px 0 12px; }
+    .details-copy p { font-size:14px; line-height:1.8; }
+    .details-price { font-weight:700; font-size:18px; margin:18px 0; }
+    .details-quantity { display:flex; align-items:center; gap:14px; margin:18px 0; }
+    .details-quantity button { width:34px; height:34px; border:1px solid #ddcfc4; border-radius:50%; background:white; cursor:pointer; }
+    .details-quantity span { min-width:18px; text-align:center; font-weight:700; }
+    .details-copy .add-to-cart { padding:14px 25px; }
+    .product-actions { display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .details-link { border:0; background:transparent; color:var(--berry); font-size:13px; font-weight:700; cursor:pointer; }
+    @media (max-width:700px) {
+      .details-box { padding:18px; }
+      .details-grid { grid-template-columns:1fr; gap:16px; }
+      .gallery-main { height:280px; }
+      .details-copy h2 { font-size:30px; }
+    }
+
   </style>
 </head>
 
@@ -440,7 +472,10 @@
           <h3>Strawberry Cheesecake</h3>
           <p>Sweet strawberry, creamy indulgence and a deliciously dreamy finish.</p>
           <div class="price">150g · GH₵50</div>
-          <button class="add-to-cart" type="button" onclick="addToCart('Strawberry Cheesecake')">ADD TO CART</button>
+          <div class="product-actions">
+            <button class="details-link" type="button" onclick="openProductDetails('Strawberry Cheesecake')">VIEW DETAILS & PHOTOS</button>
+            <button class="add-to-cart" type="button" onclick="addToCart('Strawberry Cheesecake')">ADD TO CART</button>
+          </div>
         </article>
 
         <article class="product">
@@ -451,7 +486,10 @@
           <h3>Mango Nectar</h3>
           <p>A juicy tropical fragrance with a sunshine-filled personality.</p>
           <div class="price">150g · GH₵50</div>
-          <button class="add-to-cart" type="button" onclick="addToCart('Mango Nectar')">ADD TO CART</button>
+          <div class="product-actions">
+            <button class="details-link" type="button" onclick="openProductDetails('Mango Nectar')">VIEW DETAILS & PHOTOS</button>
+            <button class="add-to-cart" type="button" onclick="addToCart('Mango Nectar')">ADD TO CART</button>
+          </div>
         </article>
 
         <article class="product">
@@ -461,7 +499,10 @@
   <h3>Coconut Cream</h3>
   <p>Soft, creamy coconut with a warm and comforting scent.</p>
   <div class="price">150g · GH₵50</div>
-  <button class="add-to-cart" type="button" onclick="addToCart('Coconut Cream')">ADD TO CART</button>
+  <div class="product-actions">
+    <button class="details-link" type="button" onclick="openProductDetails('Coconut Cream')">VIEW DETAILS & PHOTOS</button>
+    <button class="add-to-cart" type="button" onclick="addToCart('Coconut Cream')">ADD TO CART</button>
+  </div>
 </article>
 
       </div>
@@ -514,6 +555,35 @@
 
   </main>
 
+
+
+  <div class="details-panel" id="details-panel" role="dialog" aria-modal="true" aria-labelledby="details-title"
+       onclick="if(event.target===this) closeProductDetails()">
+    <div class="details-box">
+      <button class="details-close" type="button" aria-label="Close product details" onclick="closeProductDetails()">&times;</button>
+      <div class="details-grid">
+        <div class="details-gallery">
+          <div class="gallery-main"><img id="gallery-main-image" src="" alt=""></div>
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+        </div>
+        <div class="details-copy">
+          <div class="eyebrow">THE BUTTER BAR · 150G</div>
+          <h2 id="details-title"></h2>
+          <p id="details-description"></p>
+          <div class="details-price">150g · GH₵50</div>
+          <p><strong>A little butter. A lot of indulgence.</strong><br>
+          A whipped body butter made for your everyday body-care ritual.</p>
+          <div class="details-quantity">
+            <strong>Quantity</strong>
+            <button type="button" aria-label="Decrease quantity" onclick="changeDetailQuantity(-1)">−</button>
+            <span id="details-quantity">1</span>
+            <button type="button" aria-label="Increase quantity" onclick="changeDetailQuantity(1)">+</button>
+          </div>
+          <button class="add-to-cart" type="button" onclick="addDetailProductToCart()">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="cart-panel" id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" onclick="if(event.target===this) closeCart()">
     <div class="cart-box">
@@ -576,6 +646,91 @@
       ].join('\n');
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     }
+
+    const PRODUCT_GALLERIES = {
+      'Strawberry Cheesecake': {
+        description: 'A dessert-inspired scent story with sweet strawberry notes and a creamy, indulgent character.',
+        images: [
+          'Strawberry Cheesecake Whipped Body Butter Jar.png',
+          'Strawberry Cheesecake Body Butter Close-Up.png',
+          'Strawberry Cheesecake Body Butter Glow2.png',
+          'chesse.jpeg',
+          'Pastel Whipped Body Butter Trio.png',
+          'Tropical Trio Whipped Body Butter Flat-Lay.png'
+        ]
+      },
+      'Mango Nectar': {
+        description: 'A juicy tropical fragrance with a bright, fruity personality and a sunny feel.',
+        images: [
+          'Mango Nectar Whipped Body Butter Jar.png',
+          'Mango Nectar Whipped Butter Swirl.png',
+          'mango nectar 2.jpeg',
+          'Tropical Trio Whipped Body Butter Flat-Lay.png',
+          'Triangular Trio of Whipped Swirls.png',
+          'Pastel Whipped Body Butter Trio.png'
+        ]
+      },
+      'Coconut Cream': {
+        description: 'A soft, creamy coconut fragrance with a warm, comforting character.',
+        images: [
+          'Coconut Cream Body Butter Ritual.png',
+          'Coconut Cream Body Butter Product Display.png',
+          'Coconut Cream Whipped Butter Glow2.png',
+          'Tropical Trio Whipped Body Butter Flat-Lay.png',
+          'Triangular Trio of Whipped Swirls.png',
+          'Pastel Whipped Body Butter Trio.png'
+        ]
+      }
+    };
+    let detailProductName = '';
+    let detailQuantity = 1;
+
+    function openProductDetails(name) {
+      const product = PRODUCT_GALLERIES[name];
+      if (!product) return;
+      detailProductName = name;
+      detailQuantity = 1;
+      document.getElementById('details-title').textContent = name;
+      document.getElementById('details-description').textContent = product.description;
+      document.getElementById('details-quantity').textContent = detailQuantity;
+      const mainImage = document.getElementById('gallery-main-image');
+      mainImage.src = product.images[0];
+      mainImage.alt = name;
+      const thumbs = document.getElementById('gallery-thumbs');
+      thumbs.innerHTML = product.images.map((image, index) =>
+        `<button type="button" class="${index === 0 ? 'active' : ''}" aria-label="View product photo ${index + 1}" onclick="selectGalleryImage('${image.replace(/'/g, "\\'")}', this)">
+          <img src="${image}" alt="${name} photo ${index + 1}" onerror="this.parentElement.style.display='none'">
+        </button>`
+      ).join('');
+      document.getElementById('details-panel').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function selectGalleryImage(image, button) {
+      const mainImage = document.getElementById('gallery-main-image');
+      mainImage.src = image;
+      document.querySelectorAll('.gallery-thumbs button').forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+    }
+
+    function changeDetailQuantity(delta) {
+      detailQuantity = Math.max(1, detailQuantity + delta);
+      document.getElementById('details-quantity').textContent = detailQuantity;
+    }
+
+    function addDetailProductToCart() {
+      if (!detailProductName) return;
+      cart[detailProductName] = (cart[detailProductName] || 0) + detailQuantity;
+      saveCart();
+      closeProductDetails();
+      openCart();
+    }
+
+    function closeProductDetails() {
+      document.getElementById('details-panel').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     renderCart();
   </script>
 
