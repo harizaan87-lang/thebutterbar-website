@@ -464,6 +464,34 @@
       line-height: 1.8;
       max-width: 420px;
     }
+
+    .campaign-slider { position: relative; display: block; min-height: 430px; height: min(52vw, 560px); background: #f4a5c1; }
+    .campaign-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .65s ease; }
+    .campaign-slide.active { opacity: 1; visibility: visible; }
+    .campaign-slide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .campaign-slide:first-child::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(39,22,17,.60), rgba(39,22,17,.05) 78%); }
+    .campaign-slide .lifestyle-banner-copy { position: absolute; left: 0; bottom: 0; z-index: 2; }
+    .campaign-trio-slide { background: #f4a5c1; }
+    .campaign-trio-slide > img { object-fit: contain; }
+    .trio-slide-caption { position: absolute; z-index: 2; left: 28px; bottom: 28px; display: flex; flex-direction: column; gap: 5px; padding: 14px 18px; border-radius: 12px; background: rgba(255,253,249,.91); color: #3f241b; }
+    .trio-slide-caption span { font-size: 10px; letter-spacing: 2px; font-weight: 700; }
+    .trio-slide-caption strong { font: 23px Georgia, serif; }
+    .trio-slide-caption a { color: #8f3f62; font-size: 11px; font-weight: 700; text-decoration: none; letter-spacing: 1px; margin-top: 3px; }
+    .campaign-controls { position: absolute; z-index: 4; right: 22px; bottom: 22px; display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 30px; background: rgba(255,253,249,.92); }
+    .campaign-arrow { width: 30px; height: 30px; border: 0; border-radius: 50%; background: #3f241b; color: white; font-size: 21px; line-height: 1; cursor: pointer; }
+    .campaign-dots { display: flex; align-items: center; gap: 7px; }
+    .campaign-dot { width: 8px; height: 8px; border: 0; border-radius: 50%; padding: 0; background: #c9a8b3; cursor: pointer; }
+    .campaign-dot.active { background: #8f3f62; transform: scale(1.25); }
+    @media (max-width:700px) {
+      .campaign-slider { min-height: 430px; height: 115vw; }
+      .campaign-slide:first-child > img { object-position: 58% center; }
+      .campaign-slide .lifestyle-banner-copy { padding: 24px; max-width: 90%; }
+      .campaign-slide .lifestyle-banner-copy h2 { font-size: 30px; }
+      .trio-slide-caption { left: 12px; bottom: 58px; padding: 10px 12px; }
+      .trio-slide-caption strong { font-size: 18px; }
+      .campaign-controls { right: 12px; bottom: 12px; }
+    }
+
     .ritual-section {
       padding: 75px 7%;
       background: #f8e5d9;
@@ -541,14 +569,32 @@
       </div>
     </section>
 
-    <section class="lifestyle-feature" aria-label="The Butter Bar lifestyle campaign">
-      <div class="lifestyle-banner">
-        <img src="Radiant Butter Bar Beauty Campaign (1).png" alt="The Butter Bar beauty campaign">
-        <div class="lifestyle-banner-copy">
-          <div class="eyebrow">A little everyday indulgence</div>
-          <h2>Make room for your butter moment.</h2>
-          <p>Soft skin, beautiful textures and fragrance stories worth slowing down for. Bring a little joy to your everyday body-care ritual.</p>
-          <a class="button" href="#collection">EXPLORE THE COLLECTION</a>
+    <section class="lifestyle-feature" aria-label="The Butter Bar campaign slideshow">
+      <div class="lifestyle-banner campaign-slider" id="campaign-slider">
+        <div class="campaign-slide active">
+          <img src="Radiant Butter Bar Beauty Campaign (1).png" alt="The Butter Bar beauty campaign">
+          <div class="lifestyle-banner-copy">
+            <div class="eyebrow">A little everyday indulgence</div>
+            <h2>Make room for your butter moment.</h2>
+            <p>Soft skin, beautiful textures and fragrance stories worth slowing down for. Bring a little joy to your everyday body-care ritual.</p>
+            <a class="button" href="#collection">EXPLORE THE COLLECTION</a>
+          </div>
+        </div>
+        <div class="campaign-slide campaign-trio-slide">
+          <img src="Tropical Trio Whipped Body Butter Flat-Lay.png" alt="Mango Nectar, Coconut Cream and Strawberry Cheesecake whipped body butters">
+          <div class="trio-slide-caption">
+            <span>THREE SIGNATURE SCENT STORIES</span>
+            <strong>Find your favourite butter.</strong>
+            <a href="#collection">SHOP THE COLLECTION</a>
+          </div>
+        </div>
+        <div class="campaign-controls" aria-label="Slideshow controls">
+          <button type="button" class="campaign-arrow" aria-label="Previous slide" onclick="changeCampaignSlide(-1)">‹</button>
+          <div class="campaign-dots">
+            <button type="button" class="campaign-dot active" aria-label="Show campaign slide 1" onclick="goToCampaignSlide(0)"></button>
+            <button type="button" class="campaign-dot" aria-label="Show campaign slide 2" onclick="goToCampaignSlide(1)"></button>
+          </div>
+          <button type="button" class="campaign-arrow" aria-label="Next slide" onclick="changeCampaignSlide(1)">›</button>
         </div>
       </div>
     </section>
@@ -848,6 +894,27 @@
       document.getElementById('details-panel').classList.remove('open');
       document.body.style.overflow = '';
     }
+
+
+    let campaignSlideIndex = 0;
+    let campaignSlideTimer = null;
+    function goToCampaignSlide(index) {
+      const slides = document.querySelectorAll('.campaign-slide');
+      const dots = document.querySelectorAll('.campaign-dot');
+      if (!slides.length) return;
+      campaignSlideIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === campaignSlideIndex));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === campaignSlideIndex));
+      restartCampaignTimer();
+    }
+    function changeCampaignSlide(direction) {
+      goToCampaignSlide(campaignSlideIndex + direction);
+    }
+    function restartCampaignTimer() {
+      if (campaignSlideTimer) clearInterval(campaignSlideTimer);
+      campaignSlideTimer = setInterval(() => goToCampaignSlide(campaignSlideIndex + 1), 6000);
+    }
+    restartCampaignTimer();
 
     renderCart();
   </script>
