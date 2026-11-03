@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7ed">
+  <title>The Butter Bar | A Little Butter. A Lot of Indulgence.</title>
+  <meta name="description" content="Discover The Butter Bar by Siya Naturals. Whipped body butter in delicious signature fragrances.">
+
+  <style>
+    :root {
+      --cream: #fff7ed;
+      --brown: #3f241b;
+      --pink: #f4a5c1;
+      --berry: #b72e66;
+      --gold: #e9b94f;
+      --peach: #f8d8c4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+    }
+
+    a { color: inherit; }
+
+    .announcement {
+      background: var(--brown);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    header {
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      background: var(--cream);
+    }
+
+    .logo img {
+      width: 250px;
+      max-width: 48vw;
+      height: auto;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-order {
+      background: var(--brown);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+    }
+
+    .hero {
+      min-height: 570px;
+      padding: 75px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 20%, #ffffff 0, transparent 30%),
+        linear-gradient(135deg, #f9d5df, #fff0d6 55%, #f5c4d3);
+    }
+
+    .hero-content { max-width: 760px; }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(48px, 8vw, 86px);
+      line-height: 1.03;
+      margin: 22px 0;
+      font-weight: 500;
+    }
+
+    h1 span { color: var(--berry); }
+
+    .hero p {
+      max-width: 530px;
+      margin: 0 auto 30px;
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--brown);
+      color: white;
+      padding: 15px 28px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .button:hover { background: var(--berry); }
+
+    .section {
+      padding: 75px 7%;
+      text-align: center;
+    }
+
+    .section-heading {
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 5vw, 48px);
+      font-weight: 500;
+      margin: 0 0 14px;
+    }
+
+    .section-intro {
+      max-width: 580px;
+      margin: 0 auto 38px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .collection {
+      background: #fffdf9;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #f0e3d8;
+      border-radius: 18px;
+      padding: 15px 15px 25px;
+      overflow: hidden;
+    }
+
+    .product-art {
+      height: 260px;
+      border-radius: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .strawberry-art {
+      background: linear-gradient(145deg, #f9c1d3, #fff0ed);
+    }
+
+    .mango-art {
+      background: linear-gradient(145deg, #f8d36e, #fff1c5);
+    }
+
+    .coconut-art {
+      background: linear-gradient(145deg, #e9d9c7, #fff9ee);
+    }
+
+    .jar {
+      width: 145px;
+      height: 135px;
+      position: relative;
+      margin-top: 30px;
+      border: 3px solid rgba(255,255,255,.8);
+      border-radius: 12px 12px 25px 25px;
+      background: rgba(255,255,255,.42);
+      box-shadow: 0 18px 25px rgba(65,35,25,.13);
+    }
+
+    .jar::before {
+      content: "";
+      position: absolute;
+      height: 25px;
+      width: 152px;
+      left: -6px;
+      top: -24px;
+      border-radius: 7px;
+      background: #fff;
+      box-shadow: 0 4px 7px rgba(0,0,0,.09);
+    }
+
+    .jar::after {
+      content: "THE BUTTER BAR";
+      position: absolute;
+      top: 48px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font: bold 10px Georgia, serif;
+      color: var(--brown);
+    }
+
+    .product h3 {
+      font: 26px Georgia, serif;
+      margin: 22px 0 8px;
+    }
+
+    .product p {
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 44px;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 16px 0;
+    }
+
+    .product-link {
+      display: inline-block;
+      color: var(--berry);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .experience {
+      background: #f8e5d9;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 950px;
+      margin: 35px auto 0;
+    }
+
+    .experience-item {
+      padding: 20px;
+    }
+
+    .experience-item .symbol {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .experience-item h3 {
+      font: 22px Georgia, serif;
+    }
+
+    .experience-item p {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .story {
+      background: var(--cream);
+    }
+
+    .story-copy {
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    .order {
+      background: var(--brown);
+      color: white;
+      padding: 75px 7%;
+      text-align: center;
+    }
+
+    .order .button {
+      background: var(--pink);
+      color: var(--brown);
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 7%;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        padding: 20px 5%;
+      }
+
+      .logo img { max-width: 85vw; }
+
+      nav {
+        justify-content: center;
+        gap: 16px;
+      }
+
+      nav a { font-size: 12px; }
+
+      .hero { min-height: 480px; }
+
+      .products { grid-template-columns: 1fr; }
+
+      .product-art { height: 280px; }
+
+      .experience-grid { grid-template-columns: 1fr; }
+
+      .section { padding: 55px 6%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    A LITTLE BUTTER. A LOT OF INDULGENCE.
+  </div>
+
+  <header>
+    <a class="logo" href="#">
+      <img src="the-butter-bar-logo.png"
+           alt="The Butter Bar by Siya Naturals">
+    </a>
+
+    <nav>
+      <a href="#collection">The Collection</a>
+      <a href="#experience">The Experience</a>
+      <a href="#story">Our Story</a>
+      <a class="nav-order" href="#order">Order Now</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Your daily dose of buttery goodness</div>
+        <h1>Skin so soft.<br><span>Scents so delicious.</span></h1>
+        <p>
+          Meet your new favourite indulgence. Beautifully whipped
+          body butter inspired by the fragrances you love.
+          A little everyday luxury, made to be enjoyed.
+        </p>
+        <a class="button" href="#collection">SHOP THE COLLECTION</a>
+      </div>
+    </section>
+
+    <section class="section collection" id="collection">
+      <h2 class="section-heading">Choose Your Butter</h2>
+      <p class="section-intro">
+        Three signature scent stories. One irresistible
+        invitation to indulge.
+      </p>
+
+      <div class="products">
+
+        <article class="product">
+          <div class="product-art strawberry-art">
+            <div class="jar"></div>
+          </div>
+          <h3>Strawberry Cheesecake</h3>
+          <p>Sweet strawberry, creamy indulgence and a deliciously dreamy finish.</p>
+          <div class="price">150g · GH₵50</div>
+          <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+        </article>
+
+        <article class="product">
+          <div class="product-art mango-art">
+            <div class="jar"></div>
+          </div>
+          <h3>Mango Nectar</h3>
+          <p>A juicy tropical fragrance with a sunshine-filled personality.</p>
+          <div class="price">150g · GH₵50</div>
+          <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+        </article>
+
+        <article class="product">
+          <div class="product-art coconut-art">
+            <div class="jar"></div>
+          </div>
+          <h3>Coconut Cream</h3>
+          <p>Soft, creamy coconut with a warm and comforting scent.</p>
+          <div class="price">150g · GH₵50</div>
+          <a class="product-link" href="#order">ENQUIRE TO ORDER →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section experience" id="experience">
+      <h2 class="section-heading">A Little Everyday Indulgence</h2>
+      <p class="section-intro">
+        More than moisturising. It's your little moment of self-care.
+      </p>
+
+      <div class="experience-grid">
+        <div class="experience-item">
+          <div class="symbol">✧</div>
+          <h3>Whipped Goodness</h3>
+          <p>A soft, fluffy body butter experience.</p>
+        </div>
+
+        <div class="experience-item">
+          <div class="symbol">♡</div>
+          <h3>Delicious Scents</h3>
+          <p>Fragrance stories made to delight your senses.</p>
+        </div>
+
+        <div class="experience-item">
+          <div class="symbol">❀</div>
+          <h3>Daily Skin Love</h3>
+          <p>A nourishing touch for your everyday routine.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story" id="story">
+      <h2 class="section-heading">Welcome to The Butter Bar</h2>
+      <p class="story-copy">
+        We believe everyday body care deserves a little excitement.
+        The Butter Bar brings together the comfort of whipped body
+        butter and the joy of memorable fragrances.
+        Made by Siya Naturals, created for your everyday indulgence.
+      </p>
+    </section>
+
+    <section class="order" id="order">
+      <h2 class="section-heading">Your Butter Moment Awaits</h2>
+      <p class="section-intro">
+        Find your favourite fragrance and get in touch to place an order.
+      </p>
+      <a class="button" href="https://wa.me/233XXXXXXXXX">
+        ORDER VIA WHATSAPP
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>The Butter Bar by Siya Naturals</strong><br>
+    A Little Butter. A Lot of Indulgence.<br>
+    Ghana
+  </footer>
+
+</body>
+</html>
