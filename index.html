@@ -529,6 +529,153 @@
       .ritual-card img { height: 270px; }
     }
 
+  
+
+    /* THE BUTTER BAR: playful patisserie x modern beauty boutique polish */
+    :root {
+      --cream: #fff8ef;
+      --brown: #43271f;
+      --pink: #f6b8cd;
+      --berry: #a92f62;
+      --gold: #e7b84f;
+      --peach: #f8dfd0;
+      --mango: #f5cb62;
+      --coconut: #eee3d5;
+    }
+
+    body { background: var(--cream); letter-spacing: .1px; }
+    .announcement {
+      background: var(--brown);
+      padding: 11px 12px;
+      font-size: 10px;
+      letter-spacing: 2.2px;
+    }
+    header {
+      position: relative;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(67,39,31,.08);
+    }
+    .logo img { width: 46px; height: 46px; }
+    .logo-wordmark { font-size: 29px; letter-spacing: -.8px; }
+    nav { gap: 22px; }
+    nav a:not(.nav-order) {
+      position: relative;
+      padding: 8px 0;
+      transition: color .2s ease;
+    }
+    nav a:not(.nav-order):hover { color: var(--berry); }
+    .nav-order, .cart-nav {
+      box-shadow: 0 5px 14px rgba(67,39,31,.12);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .nav-order:hover, .cart-nav:hover { transform: translateY(-2px); }
+
+    .hero {
+      min-height: 520px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0, transparent 27%),
+        radial-gradient(circle at 88% 82%, rgba(245,203,98,.22) 0, transparent 25%),
+        linear-gradient(135deg, #f8d8e2 0%, #fff3df 54%, #f5c8d6 100%);
+    }
+    .eyebrow {
+      color: var(--berry);
+      letter-spacing: 3.2px;
+      font-size: 10px;
+    }
+    h1, .section-heading, .product h3, .experience-item h3,
+    .lifestyle-banner-copy h2, .ritual-card-copy h3 {
+      letter-spacing: -.8px;
+    }
+    h1 { color: var(--brown); }
+    h1 span { color: var(--berry); }
+    .hero p { color: #654b41; }
+    .button, .add-to-cart, .cart-checkout {
+      box-shadow: 0 7px 16px rgba(67,39,31,.14);
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .button:hover, .add-to-cart:hover, .cart-checkout:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(67,39,31,.17);
+    }
+
+    .section { padding-top: 82px; padding-bottom: 82px; }
+    .section-heading { color: var(--brown); }
+    .section-intro { color: #725b50; }
+    .collection {
+      background:
+        radial-gradient(circle at 8% 12%, rgba(246,184,205,.16), transparent 24%),
+        #fffdf9;
+    }
+    .product {
+      border: 1px solid #f0e2d8;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(67,39,31,.045);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 32px rgba(67,39,31,.10);
+    }
+    .product-art { border-radius: 15px; }
+    .product h3 { color: var(--brown); }
+    .product p { color: #70594f; }
+    .price { color: var(--berry); font-size: 15px; }
+    .product-link, .details-link { color: var(--berry); }
+    .experience {
+      background: linear-gradient(135deg, #f8e7df, #fff1e7);
+    }
+    .experience-item {
+      background: rgba(255,253,249,.56);
+      border: 1px solid rgba(67,39,31,.06);
+      border-radius: 18px;
+    }
+    .experience-item .symbol { color: var(--berry); }
+    .story { background: #fffaf4; }
+    .order {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(246,184,205,.18), transparent 28%),
+        var(--brown);
+    }
+    footer { background: #fffdf9; color: #70594f; }
+
+    .campaign-slider {
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(67,39,31,.08);
+    }
+    .campaign-controls { box-shadow: 0 4px 16px rgba(67,39,31,.12); }
+    .trio-slide-caption { box-shadow: 0 6px 20px rgba(67,39,31,.10); }
+    .ritual-section {
+      background: linear-gradient(135deg, #f8e7df, #fff5ec);
+    }
+    .ritual-card {
+      box-shadow: 0 9px 25px rgba(67,39,31,.06);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .ritual-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(67,39,31,.11);
+    }
+    .ritual-card-copy p { color: #70594f; line-height: 1.8; }
+
+    .cart-box, .details-box {
+      border: 1px solid #f0e2d8;
+      box-shadow: 0 24px 70px rgba(35,18,12,.25);
+    }
+    .details-price { color: var(--berry); }
+    .gallery-thumbs button.active { border-color: var(--berry); }
+
+    @media (max-width: 700px) {
+      .announcement { font-size: 9px; letter-spacing: 1.4px; }
+      .logo-wordmark { font-size: 26px; }
+      .hero { min-height: 450px; padding: 58px 6%; }
+      .section { padding-top: 62px; padding-bottom: 62px; }
+      .product { padding: 13px 13px 22px; }
+      .campaign-slider { border-radius: 0 0 18px 18px; }
+      .ritual-card img { height: 260px; }
+    }
+
   </style>
 </head>
 
