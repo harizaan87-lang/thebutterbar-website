@@ -49,12 +49,26 @@
       background: var(--cream);
     }
 
-    .logo img {
-      width: 250px;
-      max-width: 48vw;
-      height: auto;
-      display: block;
-    }
+    .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-wordmark {
+    font-family: 'La Luxe Serif', Georgia, serif;
+    font-size: 28px;
+    color: #3f241b;
+    white-space: nowrap;
+}
 
     nav {
       display: flex;
@@ -342,10 +356,12 @@
   </div>
 
   <header>
-    <a class="logo" href="#">
-      <img src="The Butter Bar Creamy Logo Poster.png"
-           alt="The Butter Bar by Siya Naturals">
-    </a>
+   <a class="logo" href="#">
+    <img src="Creamy%20Swirl%20with%20Pink%20Swoosh.png" alt="The Butter Bar swirl">
+    <span class="logo-wordmark">The Butter Bar</span>
+</a>
+           
+  
 
     <nav>
       <a href="#collection">The Collection</a>
